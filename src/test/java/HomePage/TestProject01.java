@@ -56,19 +56,18 @@ public class TestProject01 {
 
         //login button
         WebElement loginButton = wait.until(
-                ExpectedConditions.visibilityOfElementLocated(
+                ExpectedConditions.elementToBeClickable(
                         By.xpath("//*[@id=\"root\"]/div/div[1]/form/button")
                 )
         );
         loginButton.click();
 
-        WebElement errorMsg = wait.until(
-                ExpectedConditions.visibilityOfElementLocated(
-                        By.xpath("//div[contains(text(),'Invalid username or password')]")
-                )
-        );
-        String actualText = errorMsg.getText().trim();
-        Assert.assertEquals(actualText, "Invalid username or password");
+        // Validate error message
+        wait.until(ExpectedConditions.textToBePresentInElementLocated(
+                By.xpath("//*[contains(text(),'Invalid username or password')]"),
+                "Invalid username or password"));
+
+        String actualText = driver.findElement(By.xpath("//*[contains(text(),'Invalid username or password')]")).getText();
         System.out.println(actualText);
 
         try {

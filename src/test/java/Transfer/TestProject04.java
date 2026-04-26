@@ -56,15 +56,33 @@ public class TestProject04 {
 
         //login button
         WebElement loginButton = wait.until(
-                ExpectedConditions.visibilityOfElementLocated(
+                ExpectedConditions.elementToBeClickable(
                         By.xpath("//*[@id=\"root\"]/div/div[1]/form/button")
                 )
         );
         loginButton.click();
 
+        // Validate account name
+        wait.until(ExpectedConditions.textToBePresentInElementLocated(
+                By.xpath("//*[contains(text(),'user01')]"),
+                "user01"));
+
+        String validateAccountname = driver.findElement(By.xpath("//*[contains(text(),'user01')]")).getText();
+        System.out.println(validateAccountname);
+
+        // Validate account number
+        wait.until(ExpectedConditions.textToBePresentInElementLocated(
+                By.xpath("//span[contains(text(), '3127555071')]"),
+                "3127555071"));
+
+        String validateAccountNumber = driver.findElement(By.xpath("//span[contains(text(), '3127555071')]")).getText();
+        System.out.println(validateAccountNumber);
+
+
+
         //navigate to transfer
         WebElement navigateToTransfer = wait.until(
-                ExpectedConditions.visibilityOfElementLocated(
+                ExpectedConditions.elementToBeClickable(
                         By.xpath("/*[@id=\"root\"]/div/aside/nav/a[2]")
                 )
         );
@@ -96,7 +114,7 @@ public class TestProject04 {
 
         //Click Transfer Money
         WebElement clickTransfer = wait.until(
-                ExpectedConditions.visibilityOfElementLocated(
+                ExpectedConditions.elementToBeClickable(
                         By.xpath("//*[@id=\"root\"]/div/div/main/div/div/div[3]/div[1]/form/button")
                 )
         );

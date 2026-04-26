@@ -40,7 +40,7 @@ public class TestProject02 {
 
         //navigate to register
         WebElement navigateToRegister = wait.until(
-                ExpectedConditions.visibilityOfElementLocated(
+                ExpectedConditions.elementToBeClickable(
                         By.xpath("//*[@id=\"root\"]/div/div[1]/div[3]/p/a")
                 )
         );
@@ -88,29 +88,19 @@ public class TestProject02 {
 
         //click create account
         WebElement createAccount = wait.until(
-                ExpectedConditions.visibilityOfElementLocated(
+                ExpectedConditions.elementToBeClickable(
                         By.xpath("//*[@id=\"root\"]/div/div[1]/form/button")
                 )
         );
         createAccount.click();
 
-        //validate account name
-        WebElement validateAccountname = wait.until(
-                ExpectedConditions.visibilityOfElementLocated(
-                        By.xpath("//div[contains(text(), 'user05')]")
-                )
-        );
-        String validateText = validateAccountname.getText().trim();
-        Assert.assertEquals(validateText, "user05");
-        System.out.println(validateText);
+        // Validate account name
+        wait.until(ExpectedConditions.textToBePresentInElementLocated(
+                By.xpath("//*[contains(text(),'user05')]"),
+                "user05"));
 
-        //click logout
-//        WebElement logoutButton = wait.until(
-//                ExpectedConditions.visibilityOfElementLocated(
-//                        By.xpath("//*[@id=\"root\"]/div/aside/div[2]/button")
-//                )
-//        );
-//        logoutButton.click();
+        String validateAccountname = driver.findElement(By.xpath("//*[contains(text(),'user05')]")).getText();
+        System.out.println(validateAccountname);
 
         try {
             Thread.sleep(5000); // Sleep for 5 seconds

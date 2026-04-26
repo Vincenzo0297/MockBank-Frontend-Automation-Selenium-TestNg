@@ -56,31 +56,27 @@ public class TestProject03 {
 
         //login button
         WebElement loginButton = wait.until(
-                ExpectedConditions.visibilityOfElementLocated(
+                ExpectedConditions.elementToBeClickable(
                         By.xpath("//*[@id=\"root\"]/div/div[1]/form/button")
                 )
         );
         loginButton.click();
 
-        //validate account name
-        WebElement validateAccountname = wait.until(
-                ExpectedConditions.visibilityOfElementLocated(
-                        By.xpath("//div[contains(text(), 'user01')]")
-                )
-        );
-        String validateText = validateAccountname.getText().trim();
-        Assert.assertEquals(validateText, "user01");
-        System.out.println(validateText);
+        // Validate account name
+        wait.until(ExpectedConditions.textToBePresentInElementLocated(
+                By.xpath("//*[contains(text(),'user01')]"),
+                "user01"));
 
-        //validate account number
-        WebElement validateAccountNumber = wait.until(
-                ExpectedConditions.visibilityOfElementLocated(
-                        By.xpath("//span[contains(text(), '3127555071')]")
-                )
-        );
-        String validateNumberText = validateAccountNumber.getText().trim();
-        Assert.assertEquals(validateNumberText, "3127555071");
-        System.out.println(validateNumberText);
+        String validateAccountname = driver.findElement(By.xpath("//*[contains(text(),'user01')]")).getText();
+        System.out.println(validateAccountname);
+
+        // Validate account number
+        wait.until(ExpectedConditions.textToBePresentInElementLocated(
+                By.xpath("//span[contains(text(), '3127555071')]"),
+                "3127555071"));
+
+        String validateAccountNumber = driver.findElement(By.xpath("//span[contains(text(), '3127555071')]")).getText();
+        System.out.println(validateAccountNumber);
 
         try {
             Thread.sleep(5000); // Sleep for 5 seconds
