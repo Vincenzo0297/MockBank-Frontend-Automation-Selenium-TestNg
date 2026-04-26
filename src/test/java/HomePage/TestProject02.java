@@ -39,66 +39,44 @@ public class TestProject02 {
         driver.get("https://vb-bank-demo.vercel.app/login");
 
         //navigate to register
-        WebElement navigateToRegister = wait.until(
-                ExpectedConditions.elementToBeClickable(
-                        By.xpath("//*[@id=\"root\"]/div/div[1]/div[3]/p/a")
-                )
-        );
+        WebElement navigateToRegister = wait.until(ExpectedConditions.elementToBeClickable(
+                By.xpath("//*[@id=\"root\"]/div/div[1]/div[3]/p/a")));
         navigateToRegister.click();
 
         //Fullname
-        WebElement RegisterfullName = wait.until(
-                ExpectedConditions.visibilityOfElementLocated(
-                        By.xpath("//*[@id=\"root\"]/div/div[1]/form/div[1]/input")
-                )
-        );
+        WebElement RegisterfullName = wait.until(ExpectedConditions.visibilityOfElementLocated(
+                By.xpath("//*[@id=\"root\"]/div/div[1]/form/div[1]/input")));
         RegisterfullName.sendKeys("user05");
 
         //username
-        WebElement Registerusername = wait.until(
-                ExpectedConditions.visibilityOfElementLocated(
-                        By.xpath("//*[@id=\"root\"]/div/div[1]/form/div[2]/input")
-                )
-        );
+        WebElement Registerusername = wait.until(ExpectedConditions.visibilityOfElementLocated(
+                By.xpath("//*[@id=\"root\"]/div/div[1]/form/div[2]/input")));
         Registerusername.sendKeys("user05");
 
         //email
-        WebElement RegisterEmail = wait.until(
-                ExpectedConditions.visibilityOfElementLocated(
-                        By.xpath("//*[@id=\"root\"]/div/div[1]/form/div[3]/input")
-                )
-        );
+        WebElement RegisterEmail = wait.until(ExpectedConditions.visibilityOfElementLocated(
+                By.xpath("//*[@id=\"root\"]/div/div[1]/form/div[3]/input")));
         RegisterEmail.sendKeys("user05@gmail.com");
 
         //password
-        WebElement RegisterPassword = wait.until(
-                ExpectedConditions.visibilityOfElementLocated(
-                        By.xpath("//*[@id=\"root\"]/div/div[1]/form/div[4]/input")
-                )
-        );
+        WebElement RegisterPassword = wait.until(ExpectedConditions.visibilityOfElementLocated(
+                By.xpath("//*[@id=\"root\"]/div/div[1]/form/div[4]/input")));
         RegisterPassword.sendKeys("user05");
 
         //confirm password
-        WebElement RegisterConfirmPassword = wait.until(
-                ExpectedConditions.visibilityOfElementLocated(
-                        By.xpath("//*[@id=\"root\"]/div/div[1]/form/div[5]/input")
-                )
-        );
+        WebElement RegisterConfirmPassword = wait.until(ExpectedConditions.visibilityOfElementLocated(
+                By.xpath("//*[@id=\"root\"]/div/div[1]/form/div[5]/input")));
         RegisterConfirmPassword.sendKeys("user05");
 
         //click create account
-        WebElement createAccount = wait.until(
-                ExpectedConditions.elementToBeClickable(
-                        By.xpath("//*[@id=\"root\"]/div/div[1]/form/button")
-                )
-        );
+        WebElement createAccount = wait.until(ExpectedConditions.elementToBeClickable(
+                By.xpath("//*[@id=\"root\"]/div/div[1]/form/button")));
         createAccount.click();
 
         // Validate account name
         wait.until(ExpectedConditions.textToBePresentInElementLocated(
                 By.xpath("//*[contains(text(),'user05')]"),
                 "user05"));
-
         String validateAccountname = driver.findElement(By.xpath("//*[contains(text(),'user05')]")).getText();
         System.out.println(validateAccountname);
 

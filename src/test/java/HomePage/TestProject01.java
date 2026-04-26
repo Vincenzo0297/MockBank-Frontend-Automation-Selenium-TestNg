@@ -39,34 +39,24 @@ public class TestProject01 {
         driver.get("https://vb-bank-demo.vercel.app/login");
 
         //user name
-        WebElement username = wait.until(
-                ExpectedConditions.visibilityOfElementLocated(
-                        By.xpath("//*[@id=\"root\"]/div/div[1]/form/div[1]/input")
-                )
-        );
+        WebElement username = wait.until(ExpectedConditions.visibilityOfElementLocated(
+                By.xpath("//*[@id=\"root\"]/div/div[1]/form/div[1]/input")));
         username.sendKeys("user04");
 
         //Password
-        WebElement password = wait.until(
-                ExpectedConditions.visibilityOfElementLocated(
-                        By.xpath("//*[@id=\"root\"]/div/div[1]/form/div[2]/input")
-                )
-        );
+        WebElement password = wait.until(ExpectedConditions.visibilityOfElementLocated(
+                By.xpath("//*[@id=\"root\"]/div/div[1]/form/div[2]/input")));
         password.sendKeys("df3fv");
 
         //login button
-        WebElement loginButton = wait.until(
-                ExpectedConditions.elementToBeClickable(
-                        By.xpath("//*[@id=\"root\"]/div/div[1]/form/button")
-                )
-        );
+        WebElement loginButton = wait.until(ExpectedConditions.elementToBeClickable(
+                By.xpath("//*[@id=\"root\"]/div/div[1]/form/button")));
         loginButton.click();
 
         // Validate error message
         wait.until(ExpectedConditions.textToBePresentInElementLocated(
                 By.xpath("//*[contains(text(),'Invalid username or password')]"),
                 "Invalid username or password"));
-
         String actualText = driver.findElement(By.xpath("//*[contains(text(),'Invalid username or password')]")).getText();
         System.out.println(actualText);
 

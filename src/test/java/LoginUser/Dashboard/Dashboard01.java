@@ -38,17 +38,13 @@ public class Dashboard01 {
         driver.get("https://vb-bank-demo.vercel.app/login");
 
         //Login to user
-        WebElement ClickLoginUser = wait.until(
-                ExpectedConditions.elementToBeClickable(
-                        By.xpath("//*[@id=\"root\"]/div/div[1]/div[2]/div/button[1]")
-                )
-        );
+        WebElement ClickLoginUser = wait.until(ExpectedConditions.elementToBeClickable(
+                By.xpath("//*[@id=\"root\"]/div/div[1]/div[2]/div/button[1]")));
         ClickLoginUser.click();
 
         // Validate name
         WebElement validateAccountName = wait.until(ExpectedConditions.visibilityOfElementLocated(
                 By.xpath("//*[@id=\"root\"]/div/div/header/div/div/div[2]/div[1]")));
-
         String accountName = validateAccountName.getText();
 
         if(accountName.matches("[A-Za-z ]+")) {
@@ -60,9 +56,7 @@ public class Dashboard01 {
         // Validate Total Balance
         WebElement validateTotalNumber = wait.until(ExpectedConditions.visibilityOfElementLocated(
                 By.xpath("//*[@id=\"root\"]/div/div/main/div/div/div[2]/div[1]/div[1]/h2")));
-
         String totalBalance = validateTotalNumber.getText();
-
         if(totalBalance.matches("^\\d+(\\.\\d{2})?$")) {
             System.out.println("Valid Total Balance: " + totalBalance);
         } else {
@@ -72,10 +66,7 @@ public class Dashboard01 {
         // Validate account number
         WebElement validateAccountNumber = wait.until(ExpectedConditions.visibilityOfElementLocated(
                 By.xpath("//*[@id='root']/div/div/main/div/div/div[2]/div[2]/div/span[2]")));
-
         String accountNumber = validateAccountNumber.getText();
-
-        // Validate it's a 10-digit number
         if (accountNumber.matches("\\d{10}")) {
             System.out.println("Valid account number: " + accountNumber);
         } else {
@@ -84,11 +75,8 @@ public class Dashboard01 {
 
         //Valiate total deposits
         WebElement validateTotalDeposits = wait.until(ExpectedConditions.visibilityOfElementLocated(
-                By.xpath("//*[@id=\"root\"]/div/div/main/div/div/div[3]/div[1]/p[1]")
-        ));
-
+                By.xpath("//*[@id=\"root\"]/div/div/main/div/div/div[3]/div[1]/p[1]")));
         String totalDeposits = validateTotalDeposits.getText();
-
         if(totalDeposits.matches("\\d+(\\.\\d{2})?$")) {
             System.out.println("Valid Total Deposits: " + totalDeposits);
         } else {
@@ -97,11 +85,8 @@ public class Dashboard01 {
 
         //Valiate total transfer out
         WebElement validateTotalTransferOut = wait.until(ExpectedConditions.visibilityOfElementLocated(
-                By.xpath("//*[@id=\"root\"]/div/div/main/div/div/div[3]/div[2]/p[1]")
-        ));
-
+                By.xpath("//*[@id=\"root\"]/div/div/main/div/div/div[3]/div[2]/p[1]")));
         String totalTransferOut = validateTotalTransferOut.getText();
-
         if(totalTransferOut.matches("\\d+(\\.\\d{2})?$")) {
             System.out.println("Valid Total Transfer Out: " + totalTransferOut);
         } else {
@@ -110,11 +95,8 @@ public class Dashboard01 {
 
         //validate total transaction
         WebElement validateTotalTransaction = wait.until(ExpectedConditions.visibilityOfElementLocated(
-                By.xpath("//*[@id=\"root\"]/div/div/main/div/div/div[3]/div[3]/p[1]")
-        ));
-
+                By.xpath("//*[@id=\"root\"]/div/div/main/div/div/div[3]/div[3]/p[1]")));
         String totalTransaction = validateTotalTransaction.getText();
-
         if(totalTransaction.matches("\\d+(\\.\\d{2})?$")) {
             System.out.println("Valid Total Transaction: " + totalTransaction);
         } else {

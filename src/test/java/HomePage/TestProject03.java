@@ -39,34 +39,24 @@ public class TestProject03 {
         driver.get("https://vb-bank-demo.vercel.app/login");
 
         //user name
-        WebElement username = wait.until(
-                ExpectedConditions.visibilityOfElementLocated(
-                        By.xpath("//*[@id=\"root\"]/div/div[1]/form/div[1]/input")
-                )
-        );
+        WebElement username = wait.until(ExpectedConditions.visibilityOfElementLocated(
+                By.xpath("//*[@id=\"root\"]/div/div[1]/form/div[1]/input")));
         username.sendKeys("user01");
 
         //Password
-        WebElement password = wait.until(
-                ExpectedConditions.visibilityOfElementLocated(
-                        By.xpath("//*[@id=\"root\"]/div/div[1]/form/div[2]/input")
-                )
-        );
+        WebElement password = wait.until(ExpectedConditions.visibilityOfElementLocated(
+                By.xpath("//*[@id=\"root\"]/div/div[1]/form/div[2]/input")));
         password.sendKeys("user01");
 
         //login button
-        WebElement loginButton = wait.until(
-                ExpectedConditions.elementToBeClickable(
-                        By.xpath("//*[@id=\"root\"]/div/div[1]/form/button")
-                )
-        );
+        WebElement loginButton = wait.until(ExpectedConditions.elementToBeClickable(
+                By.xpath("//*[@id=\"root\"]/div/div[1]/form/button")));
         loginButton.click();
 
         // Validate account name
         wait.until(ExpectedConditions.textToBePresentInElementLocated(
                 By.xpath("//*[contains(text(),'user01')]"),
                 "user01"));
-
         String validateAccountname = driver.findElement(By.xpath("//*[contains(text(),'user01')]")).getText();
         System.out.println(validateAccountname);
 
@@ -74,7 +64,6 @@ public class TestProject03 {
         wait.until(ExpectedConditions.textToBePresentInElementLocated(
                 By.xpath("//span[contains(text(), '3127555071')]"),
                 "3127555071"));
-
         String validateAccountNumber = driver.findElement(By.xpath("//span[contains(text(), '3127555071')]")).getText();
         System.out.println(validateAccountNumber);
 
