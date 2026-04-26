@@ -5,8 +5,8 @@ pipeline {
 
         stage('Checkout') {
             steps {
-                // Pull your project from Git
-                git 'https://github.com/Vincenzo0297/ParaBank-TestNg-Frontend-Automation.git'
+                git branch: 'main',
+                        url: 'https://github.com/Vincenzo0297/ParaBank-TestNg-Frontend-Automation.git'
             }
         }
 
