@@ -18,7 +18,7 @@ pipeline {
 
         stage('Run Tests in Docker') {
             steps {
-                bat 'docker run --rm selenium-testng'
+                bat 'docker run -t selenium-testng'
             }
         }
     }
