@@ -26,7 +26,7 @@ public class Dashboard01 {
         options.addArguments("--headless=new"); // Required for Jenkins
         options.addArguments("--no-sandbox");
         options.addArguments("--disable-dev-shm-usage");
-        options.addArguments("--start-maximized");
+        options.addArguments("--window-size=1920,1080");
 
         // Create WebDriver instance
         driver = new ChromeDriver();
