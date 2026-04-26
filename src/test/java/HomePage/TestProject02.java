@@ -52,7 +52,7 @@ public class TestProject02 {
                         By.xpath("//*[@id=\"root\"]/div/div[1]/form/div[1]/input")
                 )
         );
-        RegisterfullName.sendKeys("user04");
+        RegisterfullName.sendKeys("user05");
 
         //username
         WebElement Registerusername = wait.until(
@@ -60,7 +60,7 @@ public class TestProject02 {
                         By.xpath("//*[@id=\"root\"]/div/div[1]/form/div[2]/input")
                 )
         );
-        Registerusername.sendKeys("user04");
+        Registerusername.sendKeys("user05");
 
         //email
         WebElement RegisterEmail = wait.until(
@@ -68,7 +68,7 @@ public class TestProject02 {
                         By.xpath("//*[@id=\"root\"]/div/div[1]/form/div[3]/input")
                 )
         );
-        RegisterEmail.sendKeys("user04@gmail.com");
+        RegisterEmail.sendKeys("user05@gmail.com");
 
         //password
         WebElement RegisterPassword = wait.until(
@@ -76,7 +76,7 @@ public class TestProject02 {
                         By.xpath("//*[@id=\"root\"]/div/div[1]/form/div[4]/input")
                 )
         );
-        RegisterPassword.sendKeys("user04");
+        RegisterPassword.sendKeys("user05");
 
         //confirm password
         WebElement RegisterConfirmPassword = wait.until(
@@ -84,7 +84,7 @@ public class TestProject02 {
                         By.xpath("//*[@id=\"root\"]/div/div[1]/form/div[5]/input")
                 )
         );
-        RegisterConfirmPassword.sendKeys("user04");
+        RegisterConfirmPassword.sendKeys("user05");
 
         //click create account
         WebElement createAccount = wait.until(
@@ -97,20 +97,20 @@ public class TestProject02 {
         //validate account name
         WebElement validateAccountname = wait.until(
                 ExpectedConditions.visibilityOfElementLocated(
-                        By.xpath("//div[contains(text(), 'user04')]")
+                        By.xpath("//div[contains(text(), 'user05')]")
                 )
         );
         String validateText = validateAccountname.getText().trim();
-        Assert.assertEquals(validateText, "user04");
+        Assert.assertEquals(validateText, "user05");
         System.out.println(validateText);
 
         //click logout
-        WebElement logoutButton = wait.until(
-                ExpectedConditions.visibilityOfElementLocated(
-                        By.xpath("//*[@id=\"root\"]/div/aside/div[2]/button")
-                )
-        );
-        logoutButton.click();
+//        WebElement logoutButton = wait.until(
+//                ExpectedConditions.visibilityOfElementLocated(
+//                        By.xpath("//*[@id=\"root\"]/div/aside/div[2]/button")
+//                )
+//        );
+//        logoutButton.click();
 
         try {
             Thread.sleep(5000); // Sleep for 5 seconds

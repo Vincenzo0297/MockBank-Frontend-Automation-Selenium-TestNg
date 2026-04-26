@@ -24,7 +24,6 @@ public class TestProject03 {
         // Set up ChromeDriver using WebDriverManager
         WebDriverManager.chromedriver().setup();
         ChromeOptions options = new ChromeOptions();
-        options.addArguments("--incognito"); // opens private window
         options.addArguments("--start-maximized"); // Maximize window
 
         // Create WebDriver instance
@@ -34,32 +33,57 @@ public class TestProject03 {
 
     @Test
     public void testFormFilling() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 
         // Navigate to login page
-        driver.get("https://parabank.parasoft.com/parabank/index.htm;jsessionid=39809168774D6EA48CC2E1A187C8CD23");
+        driver.get("https://vb-bank-demo.vercel.app/login");
 
-        // =========================
-        // LOGIN
-        // =========================
-        driver.findElement(By.xpath("//*[@id=\"loginPanel\"]/form/div[1]/input")).sendKeys("user02");
-        driver.findElement(By.xpath("//*[@id=\"loginPanel\"]/form/div[2]/input")).sendKeys("user02");
-        driver.findElement(By.xpath("//*[@id=\"loginPanel\"]/form/div[3]/input")).click();
-
-        // Wait for error message to appear
-        WebElement WelcomeMsg = wait.until(
-                ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='rightPanel']/p"))
+        //user name
+        WebElement username = wait.until(
+                ExpectedConditions.visibilityOfElementLocated(
+                        By.xpath("//*[@id=\"root\"]/div/div[1]/form/div[1]/input")
+                )
         );
+        username.sendKeys("user04");
 
-        // Get text
-        String actualText = WelcomeMsg.getText();
-        String expectedText = "Welcome user01";
+        //Password
+        WebElement password = wait.until(
+                ExpectedConditions.visibilityOfElementLocated(
+                        By.xpath("//*[@id=\"root\"]/div/div[1]/form/div[2]/input")
+                )
+        );
+        password.sendKeys("user04");
 
-        // Assertion
-        System.out.println(expectedText);
-        Assert.assertEquals(actualText, expectedText);
+        //login button
+        WebElement loginButton = wait.until(
+                ExpectedConditions.visibilityOfElementLocated(
+                        By.xpath("//*[@id=\"root\"]/div/div[1]/form/button")
+                )
+        );
+        loginButton.click();
 
-        driver.findElement(By.xpath("//*[@id=\"leftPanel\"]/ul/li[8]/a")).click();
+        //validate account name
+        WebElement validateAccountname = wait.until(
+                ExpectedConditions.visibilityOfElementLocated(
+                        By.xpath("//div[contains(text(), 'user04')]")
+                )
+        );
+        String validateText = validateAccountname.getText().trim();
+        Assert.assertEquals(validateText, "user04");
+        System.out.println(validateText);
+
+        //validate account number
+        WebElement validateAccountNumber = wait.until(
+                ExpectedConditions.visibilityOfElementLocated(
+                        By.xpath("//span[contains(text(), '3127555071')]")
+                )
+        );
+        String validateNumberText = validateAccountNumber.getText().trim();
+        Assert.assertEquals(validateNumberText, "3127555071");
+        System.out.println(validateNumberText);
+
+
+
 
         try {
             Thread.sleep(5000); // Sleep for 5 seconds
