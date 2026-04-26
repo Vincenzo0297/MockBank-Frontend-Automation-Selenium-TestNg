@@ -15,7 +15,7 @@ import org.testng.annotations.Test;
 
 import java.time.Duration;
 
-public class BillPayment_Testing07 {
+public class BillPayment_Testing12 {
 
     private WebDriver driver;
 
@@ -51,7 +51,7 @@ public class BillPayment_Testing07 {
         //Select provider
         WebElement dropdown = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//select[contains(@id, 'provider')]")));
         Select select = new Select(dropdown);
-        select.selectByIndex(3);
+        select.selectByIndex(4);
 
         //Amount (USD)
         WebElement enterAmount = wait.until(ExpectedConditions.elementToBeClickable(
@@ -68,11 +68,6 @@ public class BillPayment_Testing07 {
                 By.xpath("//*[@id=\"root\"]/div/div/main/div/div/div[2]/div[1]/form/div[4]/div/label[2]/input")));
         selectCard.click();
 
-        // Click on pay bill
-        WebElement clickPayBill = wait.until(ExpectedConditions.presenceOfElementLocated(
-                By.xpath("//*[@id=\"root\"]/div/div/main/div/div/div[2]/div[1]/form/button")));
-        clickPayBill.click();
-
         // Validate Bill paid successfully
         WebElement validateSuccessfullBillPayment = wait.until(ExpectedConditions.visibilityOfElementLocated(
                 By.xpath("//*[@id=\"root\"]/div/div/main/div/div/div[2]/div[1]/form/div[1]/span")));
@@ -81,7 +76,7 @@ public class BillPayment_Testing07 {
             System.out.println("Display: " + billPaymentText);
         }
 
-        // Continue with 1st card number
+        // Continue with 2nd card number
 
         try {
             Thread.sleep(5000); // Sleep for 5 seconds

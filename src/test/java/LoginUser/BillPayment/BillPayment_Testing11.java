@@ -15,7 +15,7 @@ import org.testng.annotations.Test;
 
 import java.time.Duration;
 
-public class BillPayment_Testing07 {
+public class BillPayment_Testing11 {
 
     private WebDriver driver;
 
@@ -81,7 +81,7 @@ public class BillPayment_Testing07 {
             System.out.println("Display: " + billPaymentText);
         }
 
-        // Continue with 1st card number
+        // Continue with 2nd card number
 
         try {
             Thread.sleep(5000); // Sleep for 5 seconds

@@ -81,6 +81,8 @@ public class BillPayment_Testing06 {
             System.out.println("Display: " + billPaymentText);
         }
 
+        // Continue with 1st card number
+
         try {
             Thread.sleep(5000); // Sleep for 5 seconds
         } catch (InterruptedException e) {
