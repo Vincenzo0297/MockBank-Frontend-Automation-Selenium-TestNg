@@ -29,7 +29,7 @@ public class Dashboard01 {
         options.addArguments("--window-size=1920,1080");
 
         // Create WebDriver instance
-        driver = new ChromeDriver();
+        driver = new ChromeDriver(options);
         driver.manage().window().maximize();
     }
 
