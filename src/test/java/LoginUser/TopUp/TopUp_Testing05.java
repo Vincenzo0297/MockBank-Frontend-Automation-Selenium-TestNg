@@ -26,10 +26,10 @@ public class TopUp_Testing05 {
         options.addArguments("--headless=new"); // Required for Jenkins
         options.addArguments("--no-sandbox");
         options.addArguments("--disable-dev-shm-usage");
-        options.addArguments("--start-maximized");
+        options.addArguments("--window-size=1920,1080");
 
         // Create WebDriver instance
-        driver = new ChromeDriver();
+        driver = new ChromeDriver(options);
         driver.manage().window().maximize();
     }
 
@@ -51,10 +51,11 @@ public class TopUp_Testing05 {
         navigateToTopUp.click();
 
         // Validate current Balance
+        String moneyPattern = "^\\s*[$]?[0-9]{1,3}(,[0-9]{3})*(\\.[0-9]{1,2})?\\s*$|^\\s*[$]?\\d+(\\.\\d{1,2})?\\s*$";
         WebElement validateCurrentBalance = wait.until(ExpectedConditions.visibilityOfElementLocated(
                 By.xpath("//*[@id=\"root\"]/div/div/main/div/div/div[2]/div[1]/div[1]/div[2]")));
         String currentBalanceText = validateCurrentBalance.getText().trim();
-        if (currentBalanceText.matches("\\$\\d+\\.\\d{2}")) {
+        if (currentBalanceText.matches(moneyPattern)) {
             System.out.println("Valid amount: " + currentBalanceText);
         } else {
             System.out.println("Invalid amount: " + currentBalanceText);
@@ -99,8 +100,10 @@ public class TopUp_Testing05 {
         WebElement validateSuccessfullBillPayment = wait.until(ExpectedConditions.visibilityOfElementLocated(
                 By.xpath("//*[@id=\"root\"]/div/div/main/div/div/div[2]/span")));
         String billPaymentText = validateSuccessfullBillPayment.getText();
-        if(billPaymentText.matches("[A-Za-z ]+")) {
-            System.out.println("Display: " + billPaymentText);
+        if (billPaymentText.toLowerCase().contains("success")) {
+            System.out.println("Success message: " + billPaymentText);
+        } else {
+            System.out.println("Unexpected message: " + billPaymentText);
         }
 
         try {

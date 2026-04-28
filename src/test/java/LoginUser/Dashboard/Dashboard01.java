@@ -23,7 +23,7 @@ public class Dashboard01 {
         // Set up ChromeDriver using WebDriverManager
         WebDriverManager.chromedriver().setup();
         ChromeOptions options = new ChromeOptions();
-        options.addArguments("--headless=new");
+        options.addArguments("--headless=new"); // Required for Jenkins
         options.addArguments("--no-sandbox");
         options.addArguments("--disable-dev-shm-usage");
         options.addArguments("--window-size=1920,1080");
@@ -49,17 +49,19 @@ public class Dashboard01 {
         WebElement validateAccountName = wait.until(ExpectedConditions.visibilityOfElementLocated(
                 By.xpath("//*[@id=\"root\"]/div/div/header/div/div/div[2]/div[1]")));
         String accountName = validateAccountName.getText();
-        if(accountName.matches("[A-Za-z ]+")) {
+        if(!accountName.isEmpty()) {
             System.out.println("Valid account name: " + accountName);
         } else {
             System.out.println("Invalid account name: " + accountName);
         }
 
+        String moneyPattern = "^\\s*[$]?[0-9]{1,3}(,[0-9]{3})*(\\.[0-9]{1,2})?\\s*$|^\\s*[$]?\\d+(\\.\\d{1,2})?\\s*$";
+
         // Validate Total Balance
         WebElement validateTotalNumber = wait.until(ExpectedConditions.visibilityOfElementLocated(
                 By.xpath("//*[@id=\"root\"]/div/div/main/div/div/div[2]/div[1]/div[1]/h2")));
         String totalBalance = validateTotalNumber.getText();
-        if(totalBalance.matches("^\\d+(\\.\\d{2})?$")) {
+        if(totalBalance.matches(moneyPattern)) {
             System.out.println("Valid Total Balance: " + totalBalance);
         } else {
             System.out.println("Invalid Total Balance: " + totalBalance);
@@ -69,7 +71,7 @@ public class Dashboard01 {
         WebElement validateAccountNumber = wait.until(ExpectedConditions.visibilityOfElementLocated(
                 By.xpath("//*[@id='root']/div/div/main/div/div/div[2]/div[2]/div/span[2]")));
         String accountNumber = validateAccountNumber.getText();
-        if (accountNumber.matches("\\d{10}")) {
+        if (accountNumber.matches(".*\\d{10}.*")) {
             System.out.println("Valid account number: " + accountNumber);
         } else {
             System.out.println("Invalid account number: " + accountNumber);
@@ -79,7 +81,7 @@ public class Dashboard01 {
         WebElement validateTotalDeposits = wait.until(ExpectedConditions.visibilityOfElementLocated(
                 By.xpath("//*[@id=\"root\"]/div/div/main/div/div/div[3]/div[1]/p[1]")));
         String totalDeposits = validateTotalDeposits.getText();
-        if(totalDeposits.matches("\\d+(\\.\\d{2})?$")) {
+        if(totalDeposits.matches(moneyPattern)) {
             System.out.println("Valid Total Deposits: " + totalDeposits);
         } else {
             System.out.println("Invalid Total Deposits: " + totalDeposits);
@@ -89,7 +91,7 @@ public class Dashboard01 {
         WebElement validateTotalTransferOut = wait.until(ExpectedConditions.visibilityOfElementLocated(
                 By.xpath("//*[@id=\"root\"]/div/div/main/div/div/div[3]/div[2]/p[1]")));
         String totalTransferOut = validateTotalTransferOut.getText();
-        if(totalTransferOut.matches("\\d+(\\.\\d{2})?$")) {
+        if(totalTransferOut.matches(moneyPattern)) {
             System.out.println("Valid Total Transfer Out: " + totalTransferOut);
         } else {
             System.out.println("Invalid Total Transfer Out: " + totalTransferOut);

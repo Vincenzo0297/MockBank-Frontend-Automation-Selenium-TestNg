@@ -27,10 +27,10 @@ public class BillPayment_Testing07 {
         options.addArguments("--headless=new"); // Required for Jenkins
         options.addArguments("--no-sandbox");
         options.addArguments("--disable-dev-shm-usage");
-        options.addArguments("--start-maximized");
+        options.addArguments("--window-size=1920,1080");
 
         // Create WebDriver instance
-        driver = new ChromeDriver();
+        driver = new ChromeDriver(options);
         driver.manage().window().maximize();
     }
 
@@ -106,9 +106,12 @@ public class BillPayment_Testing07 {
         WebElement validateSuccessfullBillPayment = wait.until(ExpectedConditions.visibilityOfElementLocated(
                 By.xpath("//*[@id=\"root\"]/div/div/main/div/div/div[2]/div[1]/form/div[1]/span")));
         String billPaymentText = validateSuccessfullBillPayment.getText();
-        if(billPaymentText.matches("[A-Za-z ]+")) {
-            System.out.println("Display: " + billPaymentText);
+        if (billPaymentText.toLowerCase().contains("success")) {
+            System.out.println("Success message: " + billPaymentText);
+        } else {
+            System.out.println("Unexpected message: " + billPaymentText);
         }
+
 
         try {
             Thread.sleep(5000); // Sleep for 5 seconds
